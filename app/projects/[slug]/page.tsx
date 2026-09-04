@@ -29,6 +29,47 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  function isImagePath(value: string) {
+    return value.startsWith('/') || value.startsWith('http');
+  }
+
+  function SectionImage({ value, alt }: { value: string | string[]; alt: string }) {
+    const images = Array.isArray(value) ? value : [value];
+
+    return (
+      <div className={`grid gap-4 mt-6 ${images.length > 1 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
+        {images.map((src, i) => {
+          const isVideo = src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
+          
+          // Make the 3rd image in a 3-image array span the full width to avoid an awkward empty slot
+          const spanClass = images.length === 3 && i === 2 ? 'md:col-span-2' : '';
+          
+          return src.startsWith('/') || src.startsWith('http') ? (
+            <div key={i} className={`relative w-full aspect-video md:h-96 rounded-xl overflow-hidden border border-border bg-muted/20 ${spanClass}`}>
+              {isVideo ? (
+                <video 
+                  src={src} 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  controls
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <Image src={src} alt={`${alt} ${i + 1}`} fill className="object-contain p-2" />
+              )}
+            </div>
+          ) : (
+            <div key={i} className={`w-full aspect-video md:h-96 bg-muted/50 rounded-xl flex items-center justify-center border border-dashed border-border ${spanClass}`}>
+              <span className="text-muted-foreground">{src}</span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div className="bg-background pb-24">
       {/* Hero Banner */}
@@ -133,9 +174,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <p><strong>Ideation:</strong> {project.conceptGeneration.ideation}</p>
                 <p><strong>The Pivot:</strong> {project.conceptGeneration.pivot}</p>
               </div>
-              <div className="w-full h-64 md:h-96 bg-muted rounded-xl flex items-center justify-center border border-dashed border-border mt-6">
-                <span className="text-muted-foreground">{project.conceptGeneration.imagePlaceholder}</span>
-              </div>
+              <SectionImage value={project.conceptGeneration.imagePlaceholder} alt="Concept Generation" />
             </section>
 
             {/* Detailed Design */}
@@ -145,9 +184,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <p><strong>CAD Architecture:</strong> {project.detailedDesign.architecture}</p>
                 <p><strong>Calculations & FEA:</strong> {project.detailedDesign.calculations}</p>
               </div>
-              <div className="w-full h-64 md:h-96 bg-muted rounded-xl flex items-center justify-center border border-dashed border-border mt-6">
-                <span className="text-muted-foreground">{project.detailedDesign.imagePlaceholder}</span>
-              </div>
+              <SectionImage value={project.detailedDesign.imagePlaceholder} alt="Detailed Design" />
             </section>
 
             {/* Prototyping & Testing */}
@@ -158,9 +195,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <p><strong>The Failures:</strong> {project.prototyping.failures}</p>
                 <p><strong>Testing Data:</strong> {project.prototyping.testing}</p>
               </div>
-              <div className="w-full h-64 md:h-96 bg-muted rounded-xl flex items-center justify-center border border-dashed border-border mt-6">
-                <span className="text-muted-foreground">{project.prototyping.imagePlaceholder}</span>
-              </div>
+              <SectionImage value={project.prototyping.imagePlaceholder} alt="Prototyping and Testing" />
             </section>
 
             {/* Final Outcomes */}
@@ -168,10 +203,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <h2 className="text-3xl font-bold border-b border-border pb-4">Final Outcomes & Lessons Learned</h2>
               <div className="prose prose-invert prose-lg max-w-none">
                 <p><strong>Final Specs:</strong> {project.outcomes.specs}</p>
-                <p><strong>Next Steps:</strong> {project.outcomes.nextSteps}</p>
               </div>
-              <div className="w-full h-64 md:h-96 bg-muted rounded-xl flex items-center justify-center border border-dashed border-border mt-6">
-                <span className="text-muted-foreground">{project.outcomes.imagePlaceholder}</span>
+              <SectionImage value={project.outcomes.imagePlaceholder} alt="Final Outcomes" />
+            </section>
+
+            {/* Next Steps */}
+            <section className="space-y-6">
+              <h2 className="text-3xl font-bold border-b border-border pb-4">Next Steps</h2>
+              <div className="rounded-xl border border-primary/20 bg-primary/5 p-8">
+                <p className="text-lg text-muted-foreground leading-relaxed">{project.outcomes.nextSteps}</p>
               </div>
             </section>
 

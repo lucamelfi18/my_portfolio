@@ -37,7 +37,7 @@ export function ContactPreview() {
                                 </div>
                                 <div className="flex items-center justify-center">
                                     <MapPin className="h-6 w-6 text-primary mr-4" />
-                                    <p className="text-muted-foreground">Pittsburgh, PA</p>
+                                    <p className="text-muted-foreground">Pittsburgh, PA and Bedford, MA</p>
                                 </div>
                             </div>
                         </CardContent>

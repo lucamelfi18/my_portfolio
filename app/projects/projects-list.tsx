@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FileText } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -58,24 +57,21 @@ export function ProjectsList({ projects }: { projects: CaseStudy[] }) {
 								</div>
 							</CardContent>
 							<CardFooter className="p-6 pt-0 gap-2">
-								<Link href={`/projects/${project.slug}`}>
-									<Button size="sm" variant="outline">
-										<FileText className="h-4 w-4 mr-2" />
-										Read Case Study
-									</Button>
-								</Link>
+								<Button size="sm" variant="outline" onClick={() => window.location.href = `/projects/${project.slug}`}>
+									<FileText className="h-4 w-4 mr-2" />
+									Read Case Study
+								</Button>
 							</CardFooter>
 						</Card>
 					</motion.div>
 				))}
-				
+
 				{projects.length === 0 && (
-				    <div className="col-span-full text-center p-12 text-muted-foreground">
-				        No projects found. Add markdown files to content/projects.
-				    </div>
+					<div className="col-span-full text-center p-12 text-muted-foreground">
+						No projects found.
+					</div>
 				)}
 			</div>
 		</motion.div>
 	);
 }
-
