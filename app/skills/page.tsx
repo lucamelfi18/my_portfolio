@@ -10,7 +10,7 @@ import { fadeIn, staggerContainer } from '@/lib/motion';
 export default function SkillsPage() {
 	const technicalSkills = skills.filter(skill => skill.category === 'technical');
 	const softwareSkills = skills.filter(skill => skill.category === 'software');
-	const softSkills = skills.filter(skill => skill.category === 'soft');
+	const manufacturingSkills = skills.filter(skill => skill.category === 'manufacturing');
 	const languageSkills = skills.filter(skill => skill.category === 'language');
 
 	const SkillCategory = ({
@@ -31,23 +31,18 @@ export default function SkillsPage() {
 						{icon}
 						<h2 className="text-2xl font-semibold">{title}</h2>
 					</div>
-					<div className="space-y-4">
+					<div className="flex flex-wrap gap-2">
 						{skills.map((skill, index) => (
-							<div key={index}>
-								<div className="flex justify-between mb-1">
-									<span>{skill.name}</span>
-									<span className="text-muted-foreground">{skill.level}/10</span>
-								</div>
-								<div className="skill-bar">
-									<motion.div
-										className="skill-progress"
-										initial={{ width: 0 }}
-										whileInView={{ width: `${skill.level * 10}%` }}
-										viewport={{ once: true }}
-										transition={{ duration: 1, delay: index * 0.1 }}
-									/>
-								</div>
-							</div>
+							<motion.span
+								key={index}
+								className="px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+								initial={{ opacity: 0, scale: 0.85 }}
+								whileInView={{ opacity: 1, scale: 1 }}
+								viewport={{ once: true }}
+								transition={{ duration: 0.3, delay: index * 0.05 }}
+							>
+								{skill.name}
+							</motion.span>
 						))}
 					</div>
 				</CardContent>
@@ -64,10 +59,10 @@ export default function SkillsPage() {
 					animate="show"
 				>
 					<motion.div variants={fadeIn('down', 0.2)} className="text-center mb-12">
-						<h1 className="text-4xl font-bold mb-4">Skills & Expertise</h1>
+						<h1 className="text-4xl font-bold mb-4">Skills &amp; Expertise</h1>
 						<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
 							A comprehensive overview of my technical abilities, software proficiency,
-							soft skills, and language capabilities.
+							and language capabilities.
 						</p>
 					</motion.div>
 
@@ -85,8 +80,8 @@ export default function SkillsPage() {
 							delay={0.4}
 						/>
 						<SkillCategory
-							title="Soft Skills"
-							skills={softSkills}
+							title="Manufacturing Skills"
+							skills={manufacturingSkills}
 							icon={<Brain className="h-6 w-6 text-accent" />}
 							delay={0.5}
 						/>

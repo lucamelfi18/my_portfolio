@@ -22,8 +22,8 @@ export function SkillsPreview() {
 		.sort((a, b) => b.level - a.level)
 		.slice(0, 3);
 
-	const topSoftSkills = skills
-		.filter(skill => skill.category === 'soft')
+	const topManufacturingSkills = skills
+		.filter(skill => skill.category === 'manufacturing')
 		.sort((a, b) => b.level - a.level)
 		.slice(0, 3);
 
@@ -42,90 +42,66 @@ export function SkillsPreview() {
 					viewport={{ once: true }}
 					className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10"
 				>
-					<motion.div
-						variants={fadeIn('up', 0.1)}
-						className="space-y-6"
-					>
+					<motion.div variants={fadeIn('up', 0.1)} className="space-y-6">
 						<Card>
 							<CardContent className="p-6">
 								<h3 className="text-xl font-bold mb-4">Technical Expertise</h3>
-								<div className="space-y-4">
+								<div className="flex flex-wrap gap-2">
 									{topTechnicalSkills.map((skill, index) => (
-										<div key={index}>
-											<div className="flex justify-between mb-1">
-												<span>{skill.name}</span>
-												<span className="text-muted-foreground">{skill.level}/10</span>
-											</div>
-											<div className="skill-bar">
-												<motion.div
-													className="skill-progress"
-													initial={{ width: 0 }}
-													whileInView={{ width: `${skill.level * 10}%` }}
-													viewport={{ once: true }}
-													transition={{ duration: 1, delay: index * 0.1 }}
-												/>
-											</div>
-										</div>
+										<motion.span
+											key={index}
+											className="px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+											initial={{ opacity: 0, scale: 0.85 }}
+											whileInView={{ opacity: 1, scale: 1 }}
+											viewport={{ once: true }}
+											transition={{ duration: 0.3, delay: index * 0.05 }}
+										>
+											{skill.name}
+										</motion.span>
 									))}
 								</div>
 							</CardContent>
 						</Card>
 					</motion.div>
 
-					<motion.div
-						variants={fadeIn('up', 0.2)}
-						className="space-y-6"
-					>
+					<motion.div variants={fadeIn('up', 0.2)} className="space-y-6">
 						<Card>
 							<CardContent className="p-6">
 								<h3 className="text-xl font-bold mb-4">Software Proficiency</h3>
-								<div className="space-y-4">
+								<div className="flex flex-wrap gap-2">
 									{topSoftwareSkills.map((skill, index) => (
-										<div key={index}>
-											<div className="flex justify-between mb-1">
-												<span>{skill.name}</span>
-												<span className="text-muted-foreground">{skill.level}/10</span>
-											</div>
-											<div className="skill-bar">
-												<motion.div
-													className="skill-progress"
-													initial={{ width: 0 }}
-													whileInView={{ width: `${skill.level * 10}%` }}
-													viewport={{ once: true }}
-													transition={{ duration: 1, delay: index * 0.1 }}
-												/>
-											</div>
-										</div>
+										<motion.span
+											key={index}
+											className="px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+											initial={{ opacity: 0, scale: 0.85 }}
+											whileInView={{ opacity: 1, scale: 1 }}
+											viewport={{ once: true }}
+											transition={{ duration: 0.3, delay: index * 0.05 }}
+										>
+											{skill.name}
+										</motion.span>
 									))}
 								</div>
 							</CardContent>
 						</Card>
 					</motion.div>
 
-					<motion.div
-						variants={fadeIn('up', 0.3)}
-						className="space-y-6"
-					>
+					<motion.div variants={fadeIn('up', 0.3)} className="space-y-6">
 						<Card>
 							<CardContent className="p-6">
-								<h3 className="text-xl font-bold mb-4">Soft Skills</h3>
-								<div className="space-y-4">
-									{topSoftSkills.map((skill, index) => (
-										<div key={index}>
-											<div className="flex justify-between mb-1">
-												<span>{skill.name}</span>
-												<span className="text-muted-foreground">{skill.level}/10</span>
-											</div>
-											<div className="skill-bar">
-												<motion.div
-													className="skill-progress"
-													initial={{ width: 0 }}
-													whileInView={{ width: `${skill.level * 10}%` }}
-													viewport={{ once: true }}
-													transition={{ duration: 1, delay: index * 0.1 }}
-												/>
-											</div>
-										</div>
+								<h3 className="text-xl font-bold mb-4">Manufacturing Skills</h3>
+								<div className="flex flex-wrap gap-2">
+									{topManufacturingSkills.map((skill, index) => (
+										<motion.span
+											key={index}
+											className="px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+											initial={{ opacity: 0, scale: 0.85 }}
+											whileInView={{ opacity: 1, scale: 1 }}
+											viewport={{ once: true }}
+											transition={{ duration: 0.3, delay: index * 0.05 }}
+										>
+											{skill.name}
+										</motion.span>
 									))}
 								</div>
 							</CardContent>

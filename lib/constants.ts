@@ -1,3 +1,5 @@
+import { release } from "process";
+
 export const siteConfig = {
 	name: 'Engineering Portfolio',
 	description:
@@ -28,27 +30,19 @@ export const siteConfig = {
 			href: '/projects',
 		},
 		{
-			title: 'Certificates',
-			href: '/certificates',
-		},
-		{
-			title: 'Blog',
-			href: '/blog',
-		},
-		{
 			title: 'Contact',
 			href: '/contact',
 		},
 	],
 	links: {
 		github: 'https://github.com/yourusername',
-		linkedin: 'https://linkedin.com/in/yourusername',
+		linkedin: 'https://www.linkedin.com/in/lucamelfi18/',
 		twitter: 'https://twitter.com/yourusername',
 		facebook: 'https://facebook.com/yourusername',
 		instagram: 'https://instagram.com/yourusername',
 		whatsapp: 'https://wa.me/yourphonenumber',
-		email: 'mailto:youremail@example.com',
-		phone: 'tel:+1234567890',
+		email: 'mailto:lmelfi@andrew.cmu.edu',
+		phone: 'tel:+5084397281',
 	},
 };
 
@@ -64,30 +58,44 @@ export type Experience = {
 
 export const experiences: Experience[] = [
 	{
-		title: 'Engineering Intern',
-		company: 'Tech Company',
-		location: 'City, Country',
-		startDate: 'May 2023',
-		endDate: 'Aug 2023',
+		title: 'Advanced Mechanical Engineering Intern',
+		company: 'Lila Sciences',
+		location: 'Cambridge, Massachusetts',
+		startDate: 'May 2026',
+		endDate: 'August 2026',
 		description: [
-			'Worked on developing and testing software components for embedded systems',
-			'Collaborated with senior engineers on project planning and execution',
-			'Implemented test procedures for quality assurance',
+			'Architected mechanical design (SolidWorks) of a 21-instrument lab automation work cell (705-line BOM, 50+ CAD models), driving it from concept layout through Final Design Review to build release',
+			'Engineered a pneumatic distribution system, sizing regulators and filtration to deliver instrument-specific air quality',
+			'Designed 20+ custom precision fixtures in SolidWorks, applying GD&T and tolerance stack-up analyses to accomplish first-pass acceptance across all outside vendors',
 		],
-		technologies: ['C++', 'Python', 'MATLAB', 'Git'],
+		technologies: ['SolidWorks', 'PDM', '3D Printing (FDM & SLA)', 'Laser Cutting', 'GD&T'],
 	},
 	{
-		title: 'Research Assistant',
-		company: 'University Lab',
-		location: 'City, Country',
-		startDate: 'Jan 2023',
-		endDate: 'Apr 2023',
+		title: 'Graduate Researcher',
+		company: 'The Biohybrid and Organic Robotics Group, Carnegie Mellon University',
+		location: 'Pittsburgh, Pennsylvania',
+		startDate: 'February 2025',
+		endDate: 'Present',
 		description: [
-			'Assisted in research focusing on advanced materials for mechanical applications',
-			'Conducted literature reviews and compiled research findings',
-			'Performed data analysis and visualization of experimental results',
+			'Designed and implemented an electromechanical linear-actuation and load-measurement system achieving 0.04 mm positional accuracy and millinewton force resolution to quantify the biomechanics of soft-bodied organisms',
+			'Programmed an open-loop C++ stepper-motor controller with 3,200-step/rev micro-stepping for precise tissue probing, verifying positional accuracy against stylus-micrometer measurements in Python',
+			'Simulated biomechanical properties of soft-tissue organisms by applying a neo-Hookean hyperelastic model to size silicone test-phantoms, tuning the geometry for a 3.92 N physical force calibration',
+			'Developed a custom real-time visualization GUI in Python (Matplotlib) to parse and plot live serial port data, enabling instant monitoring of electromechanical testing metrics'
 		],
-		technologies: ['MATLAB', 'CAD', 'Data Analysis', 'Python'],
+		technologies: ['MATLAB', 'SolidWorks', 'Python', 'Arduino', '3D Printing', 'Soldering', 'Circuit Design'],
+	},
+	{
+		title: 'Product Supply Engineering Intern',
+		company: 'Procter & Gamble',
+		location: 'Cincinnati, Ohio',
+		startDate: 'May 2025',
+		endDate: 'August 2025',
+		description: [
+			'Deployed an AI-driven machine-vision and inline-metrology system, enabling 100% automated inspection and eliminating 520 hours of manual labor annually',
+			'Validated PLC logic and optimized throughput for automated depalletization machinery prior to installation by building interactive discrete-event simulations in SimTalk and Siemens Plant Simulation',
+			'Identified automation opportunities for digital commerce products, proposed a cost-saving solution with anaffordable capital of $700K, 23% ROR, and over $100K in projected NPV'
+		],
+		technologies: ['Siemens Plant Simulation', 'SimTalk', 'Excel'],
 	},
 ];
 
@@ -143,138 +151,81 @@ export type Education = {
 
 export const education: Education[] = [
 	{
+		degree: 'Master of Science',
+		field: 'Mechanical Engineering, Robotics and Control Systems',
+		institution: 'Carnegie Mellon University',
+		location: 'Pittsburgh, PA',
+		startDate: 'January 2026',
+		endDate: 'December 2027',
+		gpa: '4.00/4.00',
+		achievements: [],
+	},
+	{
 		degree: 'Bachelor of Science',
 		field: 'Mechanical Engineering',
-		institution: 'University Name',
-		location: 'City, Country',
-		startDate: 'Sep 2020',
-		endDate: 'Present',
-		gpa: '3.8/4.0',
+		institution: 'Carnegie Mellon University',
+		location: 'Pittsburgh, PA',
+		startDate: 'August 2023',
+		endDate: 'May 2027',
+		gpa: '3.93/4.00',
 		achievements: [
 			'Dean\'s List (All Semesters)',
-			'Academic Excellence Scholarship',
-			'Senior Design Project Award',
+			'AC Mellon President, Captain',
+			"BUILD18 Hackathon 'Lab Rat' Award",
 		],
 	},
 	{
-		degree: 'High School Diploma',
-		field: 'Science and Mathematics',
-		institution: 'High School Name',
-		location: 'City, Country',
-		startDate: 'Sep 2016',
-		endDate: 'Jun 2020',
+		degree: 'Bedford High School Diploma',
+		field: 'N/A',
+		institution: 'Bedford High School',
+		location: 'Bedford, MA',
+		startDate: 'September 2019',
+		endDate: 'Jun 2023',
 		gpa: '4.0/4.0',
 		achievements: [
 			'Valedictorian',
-			'National Mathematics Competition Finalist',
-			'Science Fair Gold Medal',
+			'MA Superintendent\'s Certificate for Academic Excellence',
+			'Harvard Book Award',
+			'2-time Varsity Soccer Captain',
+			'Varsity Soccer and Outdoor Track & Field League All-Star',
 		],
 	},
 ];
 
-export type Certificate = {
-	title: string;
-	issuer: string;
-	date: string;
-	id?: string;
-	url?: string;
-	pdf?: string;
-};
-
-export const certificates: Certificate[] = [
-	{
-		title: 'Engineering Professional Certification',
-		issuer: 'Professional Engineering Association',
-		date: 'Nov 2023',
-		id: 'CERT-12345',
-		url: '#',
-		pdf: '/certificates/sample.pdf',
-	},
-	{
-		title: 'CAD Design Specialist',
-		issuer: 'Autodesk',
-		date: 'Jun 2023',
-		id: 'CERT-67890',
-		url: '#',
-		pdf: '/certificates/sample.pdf',
-	},
-	{
-		title: 'Project Management Fundamentals',
-		issuer: 'Project Management Institute',
-		date: 'Mar 2023',
-		id: 'CERT-24680',
-		url: '#',
-		pdf: '/certificates/sample.pdf',
-	},
-];
 
 export type Skill = {
 	name: string;
 	level: number; // 1-10
-	category: 'technical' | 'software' | 'soft' | 'language';
+	category: 'technical' | 'software' | 'manufacturing' | 'language';
 };
 
 export const skills: Skill[] = [
 	// Technical Skills
-	{ name: 'Mechanical Design', level: 9, category: 'technical' },
+	{ name: 'Mechanical Design/DFM', level: 9, category: 'technical' },
 	{ name: 'Structural Analysis', level: 8, category: 'technical' },
-	{ name: 'Thermodynamics', level: 7, category: 'technical' },
-	{ name: 'Control Systems', level: 8, category: 'technical' },
+	{ name: 'Control Systems', level: 7, category: 'technical' },
 	{ name: 'Circuit Design', level: 6, category: 'technical' },
+	{ name: 'GD&T/Technical Drawings', level: 8, category: 'technical' },
 
 	// Software Skills
-	{ name: 'MATLAB', level: 9, category: 'software' },
-	{ name: 'AutoCAD', level: 8, category: 'software' },
+	{ name: 'MATLAB', level: 7, category: 'software' },
+	{ name: 'Simulink', level: 6, category: 'software' },
 	{ name: 'SolidWorks', level: 9, category: 'software' },
-	{ name: 'Python', level: 7, category: 'software' },
-	{ name: 'C++', level: 6, category: 'software' },
-	{ name: 'ANSYS', level: 8, category: 'software' },
+	{ name: 'Python', level: 8, category: 'software' },
+	{ name: 'C/C++', level: 7, category: 'software' },
+	{ name: 'ANSYS FEA', level: 8, category: 'software' },
 
-	// Soft Skills
-	{ name: 'Problem Solving', level: 9, category: 'soft' },
-	{ name: 'Team Leadership', level: 8, category: 'soft' },
-	{ name: 'Project Management', level: 7, category: 'soft' },
-	{ name: 'Technical Writing', level: 8, category: 'soft' },
-	{ name: 'Presentation', level: 7, category: 'soft' },
+	// Manufacturing Skills
+	{ name: 'FDM 3D Printing', level: 10, category: 'manufacturing' },
+	{ name: 'SLA 3D Printing', level: 7, category: 'manufacturing' },
+	{ name: 'Laser Cutting', level: 9, category: 'manufacturing' },
+	{ name: 'Waterjet', level: 7, category: 'manufacturing' },
+	{ name: 'Manual Mill', level: 6, category: 'manufacturing' },
+	{ name: 'Lathe', level: 6, category: 'manufacturing' },
+	{ name: 'Soldering', level: 7, category: 'manufacturing' },
+	{ name: 'MIG Welding', level: 6, category: 'manufacturing' },
 
 	// Languages
 	{ name: 'English', level: 10, category: 'language' },
-	{ name: 'Spanish', level: 6, category: 'language' },
-	{ name: 'French', level: 4, category: 'language' },
-];
-
-export type BlogPost = {
-	title: string;
-	excerpt: string;
-	date: string;
-	author: string;
-	image: string;
-	slug: string;
-};
-
-export const blogPosts: BlogPost[] = [
-	{
-		title: 'Advances in Renewable Energy Technologies',
-		excerpt: 'Exploring the latest innovations in renewable energy and their impact on sustainable development.',
-		date: 'Mar 15, 2024',
-		author: 'Your Name',
-		image: 'https://images.pexels.com/photos/2800832/pexels-photo-2800832.jpeg',
-		slug: 'advances-in-renewable-energy',
-	},
-	{
-		title: 'The Future of Robotics in Manufacturing',
-		excerpt: 'How robotics and automation are revolutionizing the manufacturing industry and creating new opportunities.',
-		date: 'Feb 22, 2024',
-		author: 'Your Name',
-		image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg',
-		slug: 'future-of-robotics-manufacturing',
-	},
-	{
-		title: 'Sustainable Building Materials in Modern Construction',
-		excerpt: 'An analysis of eco-friendly building materials and their applications in contemporary architecture.',
-		date: 'Jan 10, 2024',
-		author: 'Your Name',
-		image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
-		slug: 'sustainable-building-materials',
-	},
+	{ name: 'Spanish', level: 7, category: 'language' },
 ];

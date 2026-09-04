@@ -21,28 +21,35 @@ export default function AboutPage() {
 					<motion.div variants={fadeIn('right', 0.3)} className="space-y-6">
 						<h1 className="text-4xl font-bold">About Me</h1>
 						<p className="text-lg text-muted-foreground">
-							I am a passionate engineering student with a focus on innovation and problem-solving.
-							My academic journey has equipped me with strong technical skills and a deep understanding
-							of engineering principles.
+							I am a mechanical engineering student specializing in robotics, dynamic control systems, 
+							and precision hardware design. Combining rigorous mechanical analysis with embedded programming, 
+							I focus on transforming complex physical requirements into reliable, high-performance 
+							electromechanical systems. My core technical toolkit spans 3D CAD modeling, 
+							finite element and thermal analysis (FEA), rapid prototyping, and
+							firmware development in C++ and Python.
 						</p>
 						<div className="space-y-4">
 							<h2 className="text-2xl font-semibold">My Journey</h2>
 							<p className="text-muted-foreground">
-								Throughout my academic career, I've been involved in various projects that have
-								helped me develop practical skills and theoretical knowledge. I believe in
-								continuous learning and staying updated with the latest technological advancements.
+								My work centers on the intersection of physical design and automated control. 
+								Through hands-on development across autonomous robotics, biomechanical test systems, 
+								and lab automation hardware, I have engineered custom mechanical assemblies 
+								from initial kinematics and structural simulation to physical fabrication and sensor integration. 
+								Whether optimizing active thermal management enclosures, modeling hyperelastic material responses, 
+								or tuning motion control loops, I approach engineering challenges with a data-driven, 
+								first-principles methodology to build robust, deployable hardware.
 							</p>
 						</div>
 						<Button className="mt-6" asChild>
-							<a href="/cv.pdf" download>
-								Download CV <ArrowDownCircle className="ml-2 h-4 w-4" />
+							<a href="/resume.pdf" download="Luca_Melfi_Resume.pdf">
+								Download Resume <ArrowDownCircle className="ml-2 h-4 w-4" />
 							</a>
 						</Button>
 					</motion.div>
 
 					<motion.div variants={fadeIn('left', 0.3)} className="relative h-[500px]">
 						<Image
-							src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg"
+							src="/usar.jpeg"
 							alt="Professional photo"
 							fill
 							className="object-cover rounded-lg"
@@ -62,8 +69,10 @@ export default function AboutPage() {
 							<CardContent className="p-6">
 								<h3 className="text-xl font-semibold mb-4">Education</h3>
 								<p className="text-muted-foreground">
-									Currently pursuing a Bachelor's degree in Engineering with a focus on
-									practical applications and innovative solutions.
+									Graduating with my B.S. in Mechanical Engineering in Spring 2027
+									and my M.S. in Mechanical Engineering with a concentration in Robotics
+									and Control Systems in December 2027 from Carnegie Mellon University.
+
 								</p>
 							</CardContent>
 						</Card>
@@ -74,7 +83,7 @@ export default function AboutPage() {
 							<CardContent className="p-6">
 								<h3 className="text-xl font-semibold mb-4">Experience</h3>
 								<p className="text-muted-foreground">
-									Gained valuable experience through internships and projects, working
+									Gained valuable experience through internships, university research, and projects, working
 									with cutting-edge technologies and methodologies.
 								</p>
 							</CardContent>

@@ -3,16 +3,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, ExternalLink } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { SectionHeader } from '@/components/ui/section-header';
-import { projects } from '@/lib/constants';
 import { staggerContainer, fadeInScale } from '@/lib/motion';
+import { CaseStudy } from '@/lib/case-studies';
 
-export function ProjectsPreview() {
+export function ProjectsPreview({ projects = [] }: { projects?: CaseStudy[] }) {
 	// Only show the first 3 projects in the preview
 	const previewProjects = projects.slice(0, 3);
 
@@ -40,7 +40,7 @@ export function ProjectsPreview() {
 							<Card className="flex flex-col h-full card-gradient">
 								<div className="relative h-48 w-full">
 									<Image
-										src={project.image}
+										src={project.heroImage || 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg'}
 										alt={project.title}
 										fill
 										className="object-cover rounded-t-lg"
@@ -49,9 +49,9 @@ export function ProjectsPreview() {
 								</div>
 								<CardContent className="flex-grow p-6">
 									<h3 className="font-bold text-xl mb-2">{project.title}</h3>
-									<p className="text-muted-foreground mb-4">{project.description}</p>
+									<p className="text-muted-foreground mb-4">{project.tldr || 'Project case study.'}</p>
 									<div className="flex flex-wrap gap-2">
-										{project.tags.map((tag, tagIndex) => (
+										{project.tags?.map((tag, tagIndex) => (
 											<Badge key={tagIndex} variant="secondary">
 												{tag}
 											</Badge>
@@ -59,22 +59,12 @@ export function ProjectsPreview() {
 									</div>
 								</CardContent>
 								<CardFooter className="p-6 pt-0 gap-2">
-									{project.link && (
-										<Button size="sm" variant="outline" asChild>
-											<Link href={project.link} target="_blank" rel="noreferrer">
-												<ExternalLink className="h-4 w-4 mr-2" />
-												Demo
-											</Link>
+									<Link href={`/projects/${project.slug}`}>
+										<Button size="sm" variant="outline">
+											<FileText className="h-4 w-4 mr-2" />
+											Read Case Study
 										</Button>
-									)}
-									{project.repo && (
-										<Button size="sm" variant="outline" asChild>
-											<Link href={project.repo} target="_blank" rel="noreferrer">
-												<Github className="h-4 w-4 mr-2" />
-												Repo
-											</Link>
-										</Button>
-									)}
+									</Link>
 								</CardFooter>
 							</Card>
 						</motion.div>

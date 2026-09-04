@@ -18,44 +18,51 @@
 
 @layer base {
 	:root {
-		--background: 240 20% 3.9%;
-		--foreground: 0 0% 98%;
+		/* Deep navy — professional engineering dark background */
+		--background: 220 45% 5%;
+		--foreground: 210 30% 95%;
 
-		--card: 240 17% 8%;
-		--card-foreground: 0 0% 98%;
+		/* Slightly lifted dark card surface */
+		--card: 220 38% 9%;
+		--card-foreground: 210 25% 93%;
 
-		--popover: 240 20% 3.9%;
-		--popover-foreground: 0 0% 98%;
+		--popover: 220 45% 5%;
+		--popover-foreground: 210 30% 95%;
 
-		--primary: 169 70% 40%;
-		--primary-foreground: 0 0% 98%;
+		/* Engineering blue — precision, aerospace, manufacturing */
+		--primary: 212 90% 55%;
+		--primary-foreground: 220 45% 5%;
 
-		--secondary: 260 55% 56%;
-		--secondary-foreground: 0 0% 98%;
+		/* Steel blue — industrial secondary */
+		--secondary: 200 55% 42%;
+		--secondary-foreground: 210 30% 95%;
 
-		--accent: 37 90% 64%;
-		--accent-foreground: 240 10% 3.9%;
+		/* Precision gold — engineering drafting / CAD highlight */
+		--accent: 43 88% 58%;
+		--accent-foreground: 220 45% 5%;
 
-		--muted: 240 10% 16%;
-		--muted-foreground: 240 5% 64.9%;
+		/* Muted dark surfaces */
+		--muted: 220 25% 15%;
+		--muted-foreground: 210 15% 58%;
 
-		--destructive: 0 84.2% 60.2%;
+		--destructive: 0 72% 51%;
 		--destructive-foreground: 0 0% 98%;
 
-		--border: 240 10% 16%;
-		--input: 240 10% 16%;
-		--ring: 240 5% 64.9%;
+		--border: 220 20% 18%;
+		--input: 220 20% 18%;
+		--ring: 212 90% 55%;
 
-		--chart-1: 169 70% 40%;
-		/* teal */
-		--chart-2: 260 55% 56%;
-		/* purple */
-		--chart-3: 37 90% 64%;
-		/* amber */
-		--chart-4: 330 70% 58%;
-		/* pink */
-		--chart-5: 210 80% 64%;
-		/* blue */
+		/* Chart palette: blue, steel, gold, slate, teal */
+		--chart-1: 212 90% 55%;
+		/* engineering blue */
+		--chart-2: 200 55% 42%;
+		/* steel blue */
+		--chart-3: 43 88% 58%;
+		/* precision gold */
+		--chart-4: 220 25% 55%;
+		/* cool slate */
+		--chart-5: 175 60% 42%;
+		/* technical teal */
 
 		--radius: 0.5rem;
 	}

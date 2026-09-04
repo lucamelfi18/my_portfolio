@@ -16,7 +16,7 @@ export function AboutPreview() {
 			<div className="container px-4">
 				<SectionHeader
 					title="About Me"
-					description="A passionate engineer dedicated to solving complex problems through innovative solutions."
+					description="Mechanical engineering student with a passion for robotics, control systems, and programming."
 				/>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
@@ -25,14 +25,14 @@ export function AboutPreview() {
 						initial="hidden"
 						whileInView="show"
 						viewport={{ once: true }}
-						className="relative h-[400px] rounded-lg overflow-hidden"
+						className="relative h-[680px] w-full rounded-3xl overflow-hidden"
 					>
 						<Image
-							src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg"
-							alt="Engineer portrait"
+							src="/headshot.jpeg"
+							alt="Headshot"
 							fill
-							className="object-cover"
-							sizes="(max-width: 768px) 100vw, 50vw"
+							className="object-cover object-top"
+        					sizes="(max-width: 768px) 100vw, 50vw"
 						/>
 					</motion.div>
 
@@ -43,18 +43,19 @@ export function AboutPreview() {
 						viewport={{ once: true }}
 						className="flex flex-col justify-center"
 					>
-						<h3 className="text-2xl font-bold mb-4">Professional Engineer</h3>
+						<h3 className="text-2xl font-bold mb-4">Mechanical Engineer</h3>
 						<p className="text-muted-foreground mb-6">
-							I'm a dedicated engineering student with a passion for innovation and problem-solving.
-							My academic journey has equipped me with strong technical skills and a deep understanding
-							of engineering principles that I apply to real-world challenges.
+							My name is Luca Melfi, and I am a Senior in Mechanical Engineering at Carnegie Mellon University. 
+							I am also pursuing my integrated Masters in Mechanical Engineering with a concentration in Robotics and Control Systems. 
+							My experience and interests span mechatronics, electromechanical design, control systems, and programming, 
+							with projects ranging from soft-bodied biomechanics research to autonomous robots. 
 						</p>
 
 						<div className="grid grid-cols-2 gap-4 mb-6">
 							<Card className="card-gradient">
 								<CardContent className="p-4">
 									<h4 className="font-semibold">Education</h4>
-									<p className="text-sm text-muted-foreground">B.S. Mechanical Engineering</p>
+									<p className="text-sm text-muted-foreground">B.S./M.S. in Mechanical Engineering</p>
 								</CardContent>
 							</Card>
 							<Card className="card-gradient">
@@ -71,8 +72,8 @@ export function AboutPreview() {
 							</Card>
 							<Card className="card-gradient">
 								<CardContent className="p-4">
-									<h4 className="font-semibold">Awards</h4>
-									<p className="text-sm text-muted-foreground">5 Recognitions</p>
+									<h4 className="font-semibold">GPA</h4>
+									<p className="text-sm text-muted-foreground">3.93/4.00</p>
 								</CardContent>
 							</Card>
 						</div>
