@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Clock, Target, Ruler, Hammer, Settings } from 'lucide-react';
+import { ArrowLeft, Clock, Target, Settings } from 'lucide-react';
 
 import { getCaseStudyBySlug, getAllCaseStudies } from '@/lib/case-studies';
 import { Button } from '@/components/ui/button';
@@ -29,40 +29,44 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  function isImagePath(value: string) {
-    return value.startsWith('/') || value.startsWith('http');
-  }
-
-  function SectionImage({ value, alt }: { value: string | string[]; alt: string }) {
-    const images = Array.isArray(value) ? value : [value];
+  function SectionMedia({ value, alt }: { value: string | string[]; alt: string }) {
+    const items = Array.isArray(value) ? value : [value];
+    const filtered = items.filter((s) => s.length > 0);
+    if (filtered.length === 0) return null;
 
     return (
-      <div className={`grid gap-4 mt-6 ${images.length > 1 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
-        {images.map((src, i) => {
+      <div className="grid grid-cols-1 gap-5 mt-8">
+        {filtered.map((src, i) => {
           const isVideo = src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
-          
-          // Make the 3rd image in a 3-image array span the full width to avoid an awkward empty slot
-          const spanClass = images.length === 3 && i === 2 ? 'md:col-span-2' : '';
-          
-          return src.startsWith('/') || src.startsWith('http') ? (
-            <div key={i} className={`relative w-full aspect-video md:h-96 rounded-xl overflow-hidden border border-border bg-muted/20 ${spanClass}`}>
-              {isVideo ? (
-                <video 
-                  src={src} 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline 
+          const isMedia = src.startsWith('/') || src.startsWith('http');
+
+          if (!isMedia) {
+            return (
+              <div key={i} className="w-full aspect-[16/9] bg-muted/30 rounded-2xl flex items-center justify-center border border-dashed border-muted-foreground/25">
+                <span className="text-sm text-muted-foreground/60 italic">{src}</span>
+              </div>
+            );
+          }
+
+          if (isVideo) {
+            return (
+              <div key={i} className="w-full rounded-2xl overflow-hidden border border-border/50">
+                <video
+                  src={src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   controls
-                  className="w-full h-full object-contain"
+                  className="w-full h-auto"
                 />
-              ) : (
-                <Image src={src} alt={`${alt} ${i + 1}`} fill className="object-contain p-2" />
-              )}
-            </div>
-          ) : (
-            <div key={i} className={`w-full aspect-video md:h-96 bg-muted/50 rounded-xl flex items-center justify-center border border-dashed border-border ${spanClass}`}>
-              <span className="text-muted-foreground">{src}</span>
+              </div>
+            );
+          }
+
+          return (
+            <div key={i} className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-border/50 bg-muted/10">
+              <Image src={src} alt={`${alt} ${i + 1}`} fill className="object-contain p-3" />
             </div>
           );
         })}
@@ -70,19 +74,38 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     );
   }
 
+  // Parse **bold** patterns in text strings
+  function renderBold(text: string) {
+    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i} className="text-foreground font-semibold">{part.slice(2, -2)}</strong>;
+      }
+      return <span key={i}>{part}</span>;
+    });
+  }
+
+  function Label({ children }: { children: string }) {
+    return (
+      <span className="inline-block text-primary font-semibold tracking-wide text-sm uppercase mr-2">
+        {children}
+      </span>
+    );
+  }
+
   return (
     <div className="bg-background pb-24">
       {/* Hero Banner */}
       <div className="relative w-full h-[40vh] md:h-[60vh] bg-muted overflow-hidden">
-        <Image 
-          src={project.heroImage} 
-          alt={project.title} 
-          fill 
-          className="object-cover opacity-60" 
+        <Image
+          src={project.heroImage}
+          alt={project.title}
+          fill
+          className="object-cover opacity-60"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        
+
         <div className="absolute bottom-0 left-0 w-full">
           <div className="container max-w-6xl pb-10">
             <Button variant="outline" size="sm" asChild className="mb-6 bg-background/50 backdrop-blur-sm">
@@ -103,11 +126,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       <div className="container max-w-6xl mt-12">
         <div className="flex flex-col lg:flex-row gap-12">
-          
-          {/* Left Column: Sticky Sidebar (Executive Summary & Constraints) */}
+
+          {/* Left Column: Sticky Sidebar */}
           <div className="lg:w-1/3">
             <div className="sticky top-24 space-y-8">
-              
+
               <section>
                 <h3 className="text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-4">Executive Summary</h3>
                 <div className="space-y-4">
@@ -126,7 +149,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-wrap gap-2 mt-6">
                   {project.tags.map((tag, i) => (
                     <Badge key={i} variant="secondary">{tag}</Badge>
@@ -164,56 +187,91 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
-          {/* Right Column: Scrolling Narrative */}
+          {/* Right Column */}
           <div className="lg:w-2/3 space-y-16">
-            
-            {/* Concept Generation */}
-            <section className="space-y-6">
-              <h2 className="text-3xl font-bold border-b border-border pb-4">Concept Generation & Selection</h2>
-              <div className="prose prose-invert prose-lg max-w-none">
-                <p><strong>Ideation:</strong> {project.conceptGeneration.ideation}</p>
-                <p><strong>The Pivot:</strong> {project.conceptGeneration.pivot}</p>
-              </div>
-              <SectionImage value={project.conceptGeneration.imagePlaceholder} alt="Concept Generation" />
-            </section>
 
-            {/* Detailed Design */}
-            <section className="space-y-6">
-              <h2 className="text-3xl font-bold border-b border-border pb-4">Detailed Design & Analysis</h2>
-              <div className="prose prose-invert prose-lg max-w-none">
-                <p><strong>CAD Architecture:</strong> {project.detailedDesign.architecture}</p>
-                <p><strong>Calculations & FEA:</strong> {project.detailedDesign.calculations}</p>
-              </div>
-              <SectionImage value={project.detailedDesign.imagePlaceholder} alt="Detailed Design" />
-            </section>
+            {project.miniProjects && project.miniProjects.length > 0 ? (
+              /* ── Mini-Projects Layout ── */
+              <>
+                {project.miniProjects.map((mini, idx) => (
+                  <section key={idx} className="space-y-6">
+                    <div className="flex items-center gap-4 border-b border-border pb-4">
+                      <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary font-bold text-lg shrink-0">
+                        {idx + 1}
+                      </span>
+                      <h2 className="text-3xl font-bold">{mini.title}</h2>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {mini.tags.map((tag, t) => (
+                        <Badge key={t} variant="secondary">{tag}</Badge>
+                      ))}
+                    </div>
+                    <div className="text-lg text-muted-foreground leading-relaxed space-y-4">
+                      {mini.description.split('\n\n').map((paragraph, p) => (
+                        <p key={p}>{renderBold(paragraph)}</p>
+                      ))}
+                    </div>
+                    <SectionMedia value={mini.images} alt={mini.title} />
+                  </section>
+                ))}
+              </>
+            ) : (
+              /* ── Standard Case Study Layout ── */
+              <>
+                {project.conceptGeneration.ideation && (
+                  <section className="space-y-5">
+                    <h2 className="text-3xl font-bold border-b border-border pb-4">Concept Generation &amp; Selection</h2>
+                    <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                      <p><Label>Ideation:</Label>{project.conceptGeneration.ideation}</p>
+                      <p><Label>The Pivot:</Label>{project.conceptGeneration.pivot}</p>
+                    </div>
+                    <SectionMedia value={project.conceptGeneration.imagePlaceholder} alt="Concept Generation" />
+                  </section>
+                )}
 
-            {/* Prototyping & Testing */}
-            <section className="space-y-6">
-              <h2 className="text-3xl font-bold border-b border-border pb-4">Prototyping & Testing (The Reality Check)</h2>
-              <div className="prose prose-invert prose-lg max-w-none">
-                <p><strong>Manufacturing:</strong> {project.prototyping.manufacturing}</p>
-                <p><strong>The Failures:</strong> {project.prototyping.failures}</p>
-                <p><strong>Testing Data:</strong> {project.prototyping.testing}</p>
-              </div>
-              <SectionImage value={project.prototyping.imagePlaceholder} alt="Prototyping and Testing" />
-            </section>
+                {project.detailedDesign.architecture && (
+                  <section className="space-y-5">
+                    <h2 className="text-3xl font-bold border-b border-border pb-4">Detailed Design &amp; Analysis</h2>
+                    <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                      <p><Label>CAD Architecture:</Label>{project.detailedDesign.architecture}</p>
+                      <p><Label>Calculations &amp; FEA:</Label>{project.detailedDesign.calculations}</p>
+                    </div>
+                    <SectionMedia value={project.detailedDesign.imagePlaceholder} alt="Detailed Design" />
+                  </section>
+                )}
 
-            {/* Final Outcomes */}
-            <section className="space-y-6">
-              <h2 className="text-3xl font-bold border-b border-border pb-4">Final Outcomes & Lessons Learned</h2>
-              <div className="prose prose-invert prose-lg max-w-none">
-                <p><strong>Final Specs:</strong> {project.outcomes.specs}</p>
-              </div>
-              <SectionImage value={project.outcomes.imagePlaceholder} alt="Final Outcomes" />
-            </section>
+                {project.prototyping.manufacturing && (
+                  <section className="space-y-5">
+                    <h2 className="text-3xl font-bold border-b border-border pb-4">Prototyping &amp; Testing</h2>
+                    <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                      <p><Label>Manufacturing:</Label>{project.prototyping.manufacturing}</p>
+                      <p><Label>The Failures:</Label>{project.prototyping.failures}</p>
+                      <p><Label>Testing Data:</Label>{project.prototyping.testing}</p>
+                    </div>
+                    <SectionMedia value={project.prototyping.imagePlaceholder} alt="Prototyping and Testing" />
+                  </section>
+                )}
 
-            {/* Next Steps */}
-            <section className="space-y-6">
-              <h2 className="text-3xl font-bold border-b border-border pb-4">Next Steps</h2>
-              <div className="rounded-xl border border-primary/20 bg-primary/5 p-8">
-                <p className="text-lg text-muted-foreground leading-relaxed">{project.outcomes.nextSteps}</p>
-              </div>
-            </section>
+                {project.outcomes.specs && (
+                  <section className="space-y-5">
+                    <h2 className="text-3xl font-bold border-b border-border pb-4">Final Outcomes &amp; Lessons Learned</h2>
+                    <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                      <p><Label>Final Specs:</Label>{project.outcomes.specs}</p>
+                    </div>
+                    <SectionMedia value={project.outcomes.imagePlaceholder} alt="Final Outcomes" />
+                  </section>
+                )}
+
+                {project.outcomes.nextSteps && (
+                  <section className="space-y-5">
+                    <h2 className="text-3xl font-bold border-b border-border pb-4">Next Steps</h2>
+                    <div className="rounded-2xl border border-primary/20 bg-primary/5 p-8">
+                      <p className="text-lg text-muted-foreground leading-relaxed">{project.outcomes.nextSteps}</p>
+                    </div>
+                  </section>
+                )}
+              </>
+            )}
 
           </div>
 
@@ -222,4 +280,3 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     </div>
   );
 }
-
