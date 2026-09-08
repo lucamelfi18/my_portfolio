@@ -262,6 +262,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </section>
                 )}
 
+                {project.postHackathon && (
+                  <section className="space-y-5">
+                    <h2 className="text-3xl font-bold border-b border-border pb-4">Post-Hackathon Development</h2>
+                    <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                      <p><Label>{project.postHackathon.labels?.description || 'Updates:'}</Label>{renderBold(project.postHackathon.description)}</p>
+                    </div>
+                    {project.postHackathon.imagePlaceholder && (
+                      <SectionMedia value={project.postHackathon.imagePlaceholder} alt="Post Hackathon" />
+                    )}
+                  </section>
+                )}
+
+
                 {project.outcomes.nextSteps && (
                   <section className="space-y-5">
                     <h2 className="text-3xl font-bold border-b border-border pb-4">Next Steps</h2>

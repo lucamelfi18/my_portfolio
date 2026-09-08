@@ -44,6 +44,11 @@ export interface CaseStudy {
     nextSteps: string;
     imagePlaceholder: string | string[];
   };
+  postHackathon?: {
+    description: string;
+    imagePlaceholder?: string | string[];
+    labels?: { description?: string };
+  };
   miniProjects?: {
     title: string;
     description: string;
@@ -92,37 +97,41 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "roborink",
     title: "Roborink (Robotic Air Hockey)",
-    role: "Co-Creator / Build18 Hackathon Team",
+    role: "Co-Creator / Build18 Hackathon Team, Mechanical Design Lead",
     duration: "1 week (initial hackathon), ongoing",
     tldr: "Designed and built a robotic air hockey system featuring a joystick-controlled linear actuator paddle, which is now being upgraded for fully autonomous gameplay.",
     heroImage: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg",
-    tags: ["Robotics", "Linear Actuators", "Computer Vision", "Hackathon", "ANSYS"],
+    tags: ["Robotics", "Linear Actuators", "Computer Vision", "Hackathon", "ANSYS", "OpenCV", "Python"],
     constraints: {
-      budget: "Funded by CMU’s Robotics Club",
-      weightSize: "[Insert table dimensions]",
+      budget: "Funded by CMU’s Robotics Club and BUILD18 Hackathon.",
+      weightSize: "56 in x 28 in.",
       performance: "Must actuate fast enough to block and return a moving air hockey puck.",
       manufacturing: "Initial build completed within a one-week hackathon timeline."
     },
     conceptGeneration: {
-      ideation: "[Insert sketches of paddle mechanism or actuator layout]",
-      pivot: "The stepper motor setup was chosen for precision, but required the design of an active thermal cooling enclosure to manage heat dissipation during high-speed play.",
-      imagePlaceholder: "Placeholder: Paddle Sketches"
+      ideation: "Designed a passive paddle mechanism driven by a NEMA17 stepper motor, controlled via a stepper driver and Arduino interface, capable of reaching 1500 mm/s to match puck speeds.",
+      pivot: "The stepper motor setup was chosen for a balance between cost, ease of implementation, and speed, but required the design of an active thermal cooling enclosure to manage heat dissipation during high-speed play.",
+      imagePlaceholder: "/group.jpeg"
     },
     detailedDesign: {
-      architecture: "Designed a stepper motor–driven linear actuator paired with a custom paddle mechanism, integrated with an active cooling enclosure.",
+      architecture: "Designed a stepper motor–driven linear actuator paired with a custom paddle mechanism, integrated with an active cooling enclosure. Mounted using custom wooden supports with an elastic band to ensure consistent table contact.",
       calculations: "Executed thermal FEA in ANSYS to simulate heat generation and optimize the cooling enclosure design.",
-      imagePlaceholder: "Placeholder: CAD of Linear Actuator Setup / ANSYS Thermal FEA"
+      imagePlaceholder: "Rendering..."
     },
     prototyping: {
       manufacturing: "Rapidly prototyped during the Build18 hardware hackathon.",
-      failures: "Stepper motors risked severe overheating during continuous operation, which was mitigated by fabricating the thermally optimized enclosure.",
-      testing: "[Insert data on paddle response time or system latency]",
-      imagePlaceholder: "Placeholder: Hackathon Build Photos"
+      failures: "Stepper motors risked severe overheating, which was mitigated by the thermally optimized enclosure. Driving the stepper motor at high speeds resulted in missed steps and loss of position. Evaluated ultrasonic sensors and encoders for closed-loop control, but ultimately settled on limit switches for reliable travel bounds.",
+      testing: "Validated that the linear actuator's 1500 mm/s maximum speed was capable of consistently blocking high-velocity pucks.",
+      imagePlaceholder: "/award.jpeg"
     },
     outcomes: {
       specs: "Successfully implemented a functional joystick interface for human-to-robot play without thermal failure.",
-      nextSteps: "Currently integrating a computer vision pipeline to enable fully autonomous gameplay.",
-      imagePlaceholder: "Placeholder: Completed Table Image"
+      nextSteps: "Currently integrating a computer vision pipeline to enable fully autonomous gameplay. System can currently track the puck and adjust position accordingly.",
+      imagePlaceholder: "/roborink_demo1.mp4"
+    },
+    postHackathon: {
+      description: "Following the hackathon, we migrated the control architecture to a Raspberry Pi 5 to support onboard computer vision processing and developed an OpenCV tracking pipeline in Python that applies a Gaussian blur and adaptive thresholding to detect the puck under varying lighting conditions. The algorithm identifies contours, evaluates circularity using (4π × area) / perimeter², and highlights the puck's coordinates in real time. To support this, I am currently designing a PVC overhead frame for the camera.",
+      imagePlaceholder: "/ubunto.jpg"
     }
   },
   {
