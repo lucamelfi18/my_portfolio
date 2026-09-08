@@ -24,17 +24,20 @@ export interface CaseStudy {
     ideation: string;
     pivot: string;
     imagePlaceholder: string | string[];
+    labels?: { ideation?: string; pivot?: string };
   };
   detailedDesign: {
     architecture: string;
     calculations: string;
     imagePlaceholder: string | string[];
+    labels?: { architecture?: string; calculations?: string };
   };
   prototyping: {
     manufacturing: string;
     failures: string;
     testing: string;
     imagePlaceholder: string | string[];
+    labels?: { manufacturing?: string; failures?: string; testing?: string };
   };
   outcomes: {
     specs: string;
@@ -128,8 +131,8 @@ export const caseStudies: CaseStudy[] = [
     role: "Mechanical Design & Manufacturing, 5-person team",
     duration: "2025 Fall Semester",
     tldr: "Designed and fabricated an ergonomic benchtop vise that eliminates wrist flexion and gripping force by integrating a reversible ratchet and flywheel system.",
-    heroImage: "https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg",
-    tags: ["Mechanical Design", "FEA", "Prototyping", "Ergonomics", "Waterjet"],
+    heroImage: "/vise_hero.jpg",
+    tags: ["Mechanical Design", "FEA", "Prototyping", "Ergonomics", "Waterjet", "Laser Cutting", "3D Printing"],
     constraints: {
       budget: "Estimated retail price target of under $100.",
       weightSize: "Permitted to sacrifice portability to achieve accessibility goals.",
@@ -139,23 +142,23 @@ export const caseStudies: CaseStudy[] = [
     conceptGeneration: {
       ideation: "Evaluated a motorized assistance concept against a purely mechanical ratchet-and-flywheel design using a Pugh Matrix that compared affordability, ease of use, and manufacturing complexity.",
       pivot: "Discarded the motorized idea because a mechanical ratchet required no electronic components. Removed the gearbox as a massive flywheel provided adequate energy retention, and pivoted to a central hex shaft attachment.",
-      imagePlaceholder: "Placeholder: Pugh Matrix / Motor vs. Ratchet Sketches"
+      imagePlaceholder: "/pugh_matrix.jpg"
     },
     detailedDesign: {
       architecture: "Relies on a central hex shaft driving a flywheel to store rotational energy, alongside a custom reversible ratchet utilizing dual pins and a 3D-printed switcher to control directional locking.",
       calculations: "Conducted FEA on the steel ratchet pin under a 150 N·m load. Hand calculations for axial stress yielded a factor of safety of 1.04, matching the FEA simulated factor of safety of 0.931, well exceeding the 30 N·m standard use case.",
-      imagePlaceholder: "Placeholder: FEA Analysis / Exploded CAD"
+      imagePlaceholder: "/full_ratchet.jpg"
     },
     prototyping: {
       manufacturing: "Rapidly prototyped in laser-cut acrylic before fabricating final parts using water-jetted steel pins, a water-jetted aluminum gear and flywheel, a manually turned hex shaft, and a 3D-printed PLA switcher.",
       failures: "Early designs lacked a reliable return mechanism for the ratchet. Solved by designing a weighted pendulum handle that automatically returns the mechanism to an upright starting position.",
       testing: "Validated that the mechanical advantage system allowed forearm operation over wrist flexion, outputting nearly 5 times the required 30 N·m clamping force without risking component failure.",
-      imagePlaceholder: "Placeholder: Acrylic Prototypes vs Metal Final"
+      imagePlaceholder: ["/side_by_side.jpg", "/pin_fea.jpg"]
     },
     outcomes: {
       specs: "Delivered a fully functional accessible vise prototype with a single-unit component cost of $108.45, retaining standard hand operation capabilities.",
       nextSteps: "Future iterations would include a universal adjustable coupler to attach the ratchet subassembly to various vise shafts, and a flywheel braking system.",
-      imagePlaceholder: "Placeholder: Final Assembly Usage"
+      imagePlaceholder: "/vice_vid.mp4"
     }
   },
   {
@@ -163,14 +166,14 @@ export const caseStudies: CaseStudy[] = [
     title: "Robotics Projects",
     role: "Robotics Engineer",
     duration: "February 2025 – May 2025",
-    tldr: "A collection of robotic platforms engineered to execute complex control algorithms, from self-balancing inverted pendulums to computer vision-guided rescue bots and kinematic manipulators.",
+    tldr: "A collection of robotic platforms engineered to execute complex control algorithms, from self-balancing robots to computer vision-guided rescue bots and kinematic manipulators.",
     heroImage: "/usar.jpeg",
     tags: ["Python", "Raspberry Pi", "PID Control", "OpenCV", "IMUs", "Inverse Kinematics", "Odometry", "3D Printing", "SolidWorks"],
     constraints: {
       budget: "Course-provided electronics, microcontrollers, and raw rapid-prototyping materials.",
       weightSize: "Varied per project; all strictly constrained to function within predefined tabletop environments or obstacle courses.",
       performance: "Required real-time sensor fusion, sub-inch odometry accuracy, and robust teleoperation/perception in zero-light conditions.",
-      manufacturing: "Rapidly iterated using FDM 3D printing, laser cutting, and modular off-the-shelf actuators."
+      manufacturing: "Rapidly built and iterated using Legos, FDM 3D printing, laser cutting, and modular off-the-shelf actuators/electronics."
     },
     conceptGeneration: {
       ideation: "Analyzed kinematic and dynamic requirements for four distinct robotic challenges, ideating locomotion and manipulation strategies ranging from wheeled drivetrains to spider-inspired linkages.",
@@ -197,13 +200,13 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "U.S.A.R. Robot (Urban Search & Rescue)",
         description: "Engineered a teleoperated Search & Rescue robot capable of navigating rough terrain and completing autonomous computer vision tasks in complete darkness. \n\n**Hardware & Design:** Designed a high-torque 9:1 drivetrain capable of climbing stairs and steep ramps. Modeled and 3D-printed custom wheels optimized for varied terrain, featuring rubber treads in the front and slotted rubber-band grips in the rear. Engineered and integrated a custom onboard illumination system to enable reliable visual perception in zero-light environments.\n\n**Software & Perception:** Integrated a Raspberry Pi camera to teleoperate a servo-actuated manipulator arm and camera mount. Developed an OpenCV pipeline that leveraged the custom lighting system to autonomously identify arrow orientations and navigate toward a target, proving the robust integration of the hardware and vision stack.",
-        tags: ["Raspberry Pi", "OpenCV", "3D Printing", "SolidWorks", "Teleoperation"],
+        tags: ["Raspberry Pi", "OpenCV", "3D Printing", "SolidWorks", "Teleoperation", "PID Control"],
         images: ["/gearbox.jpeg", "/stairs.jpeg"]
       },
       {
         title: "Two-Link Kinematic Manipulator",
         description: "Developed a 6.5-inch, two-link robotic arm capable of positioning its end effector across a full coordinate grid with <0.25-inch accuracy using odometry feedback.\n\n**Kinematics & Control:** Implemented inverse kinematics (IK) algorithms in Python to solve for joint angles, enabling the system to map its configuration space and compute safe, collision-free paths. Given target coordinates, the software generated and executed smooth, precise trajectories.\n\n**Mechatronics:** Assembled the manipulator with a custom 3:1 gear reduction, carefully mitigating backlash to ensure highly repeatable and predictable motion.",
-        tags: ["Inverse Kinematics", "Python", "Odometry"],
+        tags: ["Inverse Kinematics", "Python", "Odometry", "PID Control"],
         images: ["/config_space.jpeg", "/robot_arm.mp4"]
       },
       {
@@ -215,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Spider-Linkage Locomotion Robot",
         description: "Challenged standard wheeled paradigms by designing a legged robot that utilized complex mechanical linkages to mimic a spider's walking gait.\n\n**Hardware & Odometry:** Translated continuous rotational motor output into a precise stepping motion. Developed a custom odometry tracking system that successfully measured the robot's movement to within 2 inches of accuracy entirely without the use of wheels, proving a strong understanding of linkage kinematics and alternative position tracking.",
-        tags: ["Linkage Design", "Odometry"],
+        tags: ["Linkage Design", "Odometry", "PID Control"],
         images: ["/spider.jpeg"]
       }
     ]
@@ -224,36 +227,39 @@ export const caseStudies: CaseStudy[] = [
     slug: "computer-vision-pipeline",
     title: "Computer Vision Pipeline",
     role: "Software/Perception Developer",
-    duration: "[Insert duration]",
-    tldr: "Developed a Python and NumPy-based computer vision pipeline from scratch (without OpenCV) to estimate camera-to-subject distance and focal length, achieving 90% accuracy across 1-10 foot distances.",
-    heroImage: "https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg",
+    duration: "January 2025",
+    tldr: "Developed a Python and NumPy-based computer vision pipeline from scratch (without OpenCV) to estimate camera-to-subject distance and focal length, achieving >90% accuracy across 1-10 foot distances.",
+    heroImage: "code.jpg",
     tags: ["Python", "NumPy", "Computer Vision", "Image Segmentation", "Algorithms"],
     constraints: {
       budget: "N/A (Software)",
       weightSize: "N/A",
-      performance: "Must estimate distance and focal length robustly under highly noisy image conditions.",
+      performance: "Must estimate distance and focal length robustly under highly noisy and variable image conditions.",
       manufacturing: "Required building the pipeline entirely from scratch using only NumPy, strictly avoiding external computer vision libraries like OpenCV."
     },
     conceptGeneration: {
       ideation: "Captured test images of tennis balls at varying distances (1 to 10 feet) using an iPhone 12 to build a testing dataset for thresholding and depth estimation.",
       pivot: "Implemented a queue-based breadth-first search (BFS) flood-fill algorithm for segmentation to efficiently label and differentiate objects without the memory overhead and crash risks of recursion.",
-      imagePlaceholder: "Placeholder: Algorithm Flowchart"
+      imagePlaceholder: "/tennis_ball.jpeg",
+      labels: { ideation: "Data Collection:", pivot: "Algorithm Selection:" }
     },
     detailedDesign: {
       architecture: "Integrated HSV color space conversion, Gaussian blurring, and carefully tuned thresholding to reduce noise and isolate targets before BFS segmentation.",
       calculations: "Calculated centroid and area by averaging pixel positions. Estimated distance using the geometric equation d = f * h / h', converting the iPhone 12's focal length and sensor width into pixel units.",
-      imagePlaceholder: "Placeholder: Code Architecture / Math Logic"
+      imagePlaceholder: "/thresholded.jpg",
+      labels: { architecture: "Pipeline Architecture:", calculations: "Distance Estimation:" }
     },
     prototyping: {
       manufacturing: "Coded entirely in Python utilizing NumPy.",
       failures: "Initial noise artifacts were misidentified as targets; resolved this by implementing an area computation filter to exclude small objects unlikely to be tennis balls.",
       testing: "Evaluated using thresholded and segmented test images, successfully isolating the targets and plotting the centroid (blue circle) on each respective tennis ball.",
-      imagePlaceholder: "Placeholder: Thresholded / Segmented Tennis Ball Images"
+      imagePlaceholder: "/centroid.jpg",
+      labels: { manufacturing: "Implementation:", failures: "Debugging:", testing: "Validation:" }
     },
     outcomes: {
-      specs: "Achieved an average distance estimation accuracy within 10% across 1 to 10-foot testing ranges with an average processing time of ~10 seconds per image.",
-      nextSteps: "[Insert how this pipeline will be integrated into future robotics projects, such as Roborink]",
-      imagePlaceholder: "Placeholder: Final Distance Estimation Overlay"
+      specs: "Achieved an average distance estimation accuracy within 10% across 1 to 10-foot testing ranges with an average processing time of ~10 seconds per image over 40 images with varying levels of noise, rotation, and other variations.",
+      nextSteps: "Project completed.",
+      imagePlaceholder: "/res.jpg"
     }
   }
 ];

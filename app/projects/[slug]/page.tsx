@@ -65,8 +65,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           }
 
           return (
-            <div key={i} className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-border/50 bg-muted/10">
-              <Image src={src} alt={`${alt} ${i + 1}`} fill className="object-contain p-3" />
+            <div key={i} className="relative w-full rounded-2xl overflow-hidden border border-border/50 bg-muted/10 p-3">
+              <img src={src} alt={`${alt} ${i + 1}`} className="w-full h-auto rounded-xl object-contain" />
             </div>
           );
         })}
@@ -222,8 +222,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <section className="space-y-5">
                     <h2 className="text-3xl font-bold border-b border-border pb-4">Concept Generation &amp; Selection</h2>
                     <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                      <p><Label>Ideation:</Label>{project.conceptGeneration.ideation}</p>
-                      <p><Label>The Pivot:</Label>{project.conceptGeneration.pivot}</p>
+                      <p><Label>{project.conceptGeneration.labels?.ideation || 'Ideation:'}</Label>{project.conceptGeneration.ideation}</p>
+                      <p><Label>{project.conceptGeneration.labels?.pivot || 'The Pivot:'}</Label>{project.conceptGeneration.pivot}</p>
                     </div>
                     <SectionMedia value={project.conceptGeneration.imagePlaceholder} alt="Concept Generation" />
                   </section>
@@ -233,8 +233,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <section className="space-y-5">
                     <h2 className="text-3xl font-bold border-b border-border pb-4">Detailed Design &amp; Analysis</h2>
                     <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                      <p><Label>CAD Architecture:</Label>{project.detailedDesign.architecture}</p>
-                      <p><Label>Calculations &amp; FEA:</Label>{project.detailedDesign.calculations}</p>
+                      <p><Label>{project.detailedDesign.labels?.architecture || 'CAD Architecture:'}</Label>{project.detailedDesign.architecture}</p>
+                      <p><Label>{project.detailedDesign.labels?.calculations || 'Calculations & FEA:'}</Label>{project.detailedDesign.calculations}</p>
                     </div>
                     <SectionMedia value={project.detailedDesign.imagePlaceholder} alt="Detailed Design" />
                   </section>
@@ -244,9 +244,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <section className="space-y-5">
                     <h2 className="text-3xl font-bold border-b border-border pb-4">Prototyping &amp; Testing</h2>
                     <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                      <p><Label>Manufacturing:</Label>{project.prototyping.manufacturing}</p>
-                      <p><Label>The Failures:</Label>{project.prototyping.failures}</p>
-                      <p><Label>Testing Data:</Label>{project.prototyping.testing}</p>
+                      <p><Label>{project.prototyping.labels?.manufacturing || 'Manufacturing:'}</Label>{project.prototyping.manufacturing}</p>
+                      <p><Label>{project.prototyping.labels?.failures || 'The Failures:'}</Label>{project.prototyping.failures}</p>
+                      <p><Label>{project.prototyping.labels?.testing || 'Testing Data:'}</Label>{project.prototyping.testing}</p>
                     </div>
                     <SectionMedia value={project.prototyping.imagePlaceholder} alt="Prototyping and Testing" />
                   </section>

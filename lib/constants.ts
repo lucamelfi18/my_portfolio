@@ -99,7 +99,7 @@ export const experiences: Experience[] = [
 			'Validated PLC logic and optimized throughput for automated depalletization machinery prior to installation by building interactive discrete-event simulations in SimTalk and Siemens Plant Simulation',
 			'Identified automation opportunities for digital commerce products, proposed a cost-saving solution with anaffordable capital of $700K, 23% ROR, and over $100K in projected NPV'
 		],
-		technologies: ['Siemens Plant Simulation', 'SimTalk', 'Excel'],
+		technologies: ['Siemens Plant Simulation', 'SimTalk', 'Python', 'Excel'],
 	},
 ];
 
