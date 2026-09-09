@@ -184,7 +184,7 @@ export const caseStudies: CaseStudy[] = [
       manufacturing: "Rapidly prototyped during the Build18 hardware hackathon.",
       failures: "Stepper motors risked severe overheating, which was mitigated by the thermally optimized enclosure. Driving the stepper motor at high speeds resulted in missed steps and loss of position. Evaluated ultrasonic sensors and encoders for closed-loop control, but ultimately settled on limit switches for reliable travel bounds.",
       testing: "Validated that the linear actuator's 1500 mm/s maximum speed was capable of consistently blocking high-velocity pucks.",
-      imagePlaceholder: "/award.jpeg"
+      imagePlaceholder: "/award.jpg"
     },
     outcomes: {
       specs: "Successfully implemented a functional joystick interface for human-to-robot play without thermal failure.",
@@ -238,7 +238,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Software/Perception Developer",
     duration: "January 2025",
     tldr: "Developed a Python and NumPy-based computer vision pipeline from scratch (without OpenCV) to estimate camera-to-subject distance and focal length, achieving >90% accuracy across 1-10 foot distances.",
-    heroImage: "code.jpg",
+    heroImage: "/code.jpg",
     tags: ["Python", "NumPy", "Computer Vision", "Image Segmentation", "Algorithms"],
     constraints: {
       budget: "N/A (Software)",
