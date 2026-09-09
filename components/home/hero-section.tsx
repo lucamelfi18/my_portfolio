@@ -65,7 +65,7 @@ export function HeroSection() {
 						variants={fadeIn('up', 0.3)}
 						className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
 					>
-						<span className="text-gradient">Luca Melfi's</span> Portfolio
+						<span className="text-gradient">Luca Melfi&apos;s</span> Portfolio
 					</motion.h1>
 
 					<motion.p

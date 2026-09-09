@@ -80,7 +80,7 @@ export const caseStudies: CaseStudy[] = [
     detailedDesign: {
       architecture: "Modeled the system using a stepper motor, lead screw, steel linear rails, an anti-rotation carriage, and pulley-tensioning mechanics.",
       calculations: "Incorporated load cell calibration curves and neo-Hookean hyperelastic modeling equations to accurately mimic soft-tissue stress-strain responses in silicone molds.",
-      imagePlaceholder: ["/full_model.jpg", "/derivation.png", "/matlab_plot.png"]
+      imagePlaceholder: ["/full_model.JPG", "/derivation.png", "/matlab_plot.png"]
     },
     prototyping: {
       manufacturing: "All components were manufactured by 3D printing or laser cutting, with the load cell and instrumentation amplifier integrated into a microcontroller-based data acquisition system.",
@@ -202,7 +202,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Mechanical Design & Manufacturing, 5-person team",
     duration: "2025 Fall Semester",
     tldr: "Designed and fabricated an ergonomic benchtop vise that eliminates wrist flexion and gripping force by integrating a reversible ratchet and flywheel system.",
-    heroImage: "/full vise.jpg",
+    heroImage: "/full vise.JPG",
     tags: ["Mechanical Design", "FEA", "Prototyping", "Ergonomics", "Waterjet", "Laser Cutting", "3D Printing"],
     constraints: {
       budget: "Estimated retail price target of under $100.",
@@ -218,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
     detailedDesign: {
       architecture: "Relies on a central hex shaft driving a flywheel to store rotational energy, alongside a custom reversible ratchet utilizing dual pins and a 3D-printed switcher to control directional locking.",
       calculations: "Conducted FEA on the steel ratchet pin under a 150 N·m load. Hand calculations for axial stress yielded a factor of safety of 1.04, matching the FEA simulated factor of safety of 0.931, well exceeding the 30 N·m standard use case.",
-      imagePlaceholder: "/full vise.jpg"
+      imagePlaceholder: "/full vise.JPG"
     },
     prototyping: {
       manufacturing: "Rapidly prototyped in laser-cut acrylic before fabricating final parts using water-jetted steel pins, a water-jetted aluminum gear and flywheel, a manually turned hex shaft, and a 3D-printed PLA switcher.",
