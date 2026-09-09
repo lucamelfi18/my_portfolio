@@ -7,17 +7,32 @@ import { staggerContainer, fadeInScale } from '@/lib/motion';
 // Replace these placeholders with your actual image paths
 // Make sure all images are placed in your public/ folder
 const galleryImages = [
-	'stressu.jpg',
-	'usar.jpeg',
-	'spider.jpeg',
-	'flower.jpeg',
-	'group.jpeg',
-	'stent_fea.jpg',
-	'stress_conc.jpg',
-	'vise_hero.jpg',
+	// High Impact - Final Assemblies, Hero Shots & Impressive CAD
 	'/buccal_mass_iso.png',
-	'/buccal_mass_cad_iso.png',
-	'/circuit.jpeg'
+	'/usar.jpeg',
+	'/full_model.JPG',
+	'/roborink.jpg',
+	'/spider.jpeg',
+	'/full vise.JPG',
+	'/wheel.JPG',
+	
+	// Medium Impact - Engineering Rigor, FEA & Technical Analysis
+	'/pin_fea.jpg',
+	'/stent_fea.jpg',
+	'/stress_conc.jpg',
+	'/stressu.jpg',
+	'/config_space.jpeg',
+	'/derivation.png',
+	'/matlab_plot.png',
+
+	// Medium Impact - Prototyping, Hands-on & Manufacturing
+	'/gearbox.jpeg',
+	'/stairs.jpeg',
+	'/circuit.jpeg',
+	'/dial_indic.png',
+	'/side_by_side.jpg',
+	'/sketch.jpeg',
+	'/top.jpg',
 ];
 
 export function GalleryClient() {
@@ -37,12 +52,12 @@ export function GalleryClient() {
 				</p>
 			</motion.div>
 
-			<div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 items-start">
 				{galleryImages.map((src, index) => (
 					<motion.div
 						key={index}
 						variants={fadeInScale(index * 0.1)}
-						className="relative break-inside-avoid overflow-hidden rounded-xl bg-muted/10 border border-border/50 group p-3"
+						className="relative overflow-hidden rounded-xl bg-muted/10 border border-border/50 group p-3 flex justify-center"
 					>
 						<img
 							src={src.startsWith('/') || src.startsWith('http') ? src : `/${src}`}

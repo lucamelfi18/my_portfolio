@@ -80,7 +80,7 @@ export const caseStudies: CaseStudy[] = [
     detailedDesign: {
       architecture: "Modeled the system using a stepper motor, lead screw, steel linear rails, an anti-rotation carriage, and pulley-tensioning mechanics.",
       calculations: "Incorporated load cell calibration curves and neo-Hookean hyperelastic modeling equations to accurately mimic soft-tissue stress-strain responses in silicone molds.",
-      imagePlaceholder: ["/buccal_mass_cad_iso.png", "/derivation.png", "/matlab_plot.png"]
+      imagePlaceholder: ["/full_model.jpg", "/derivation.png", "/matlab_plot.png"]
     },
     prototyping: {
       manufacturing: "All components were manufactured by 3D printing or laser cutting, with the load cell and instrumentation amplifier integrated into a microcontroller-based data acquisition system.",
@@ -95,12 +95,74 @@ export const caseStudies: CaseStudy[] = [
     }
   },
   {
+    slug: "autonomous-robotics",
+    title: "Robotics Projects",
+    role: "Robotics Engineer",
+    duration: "February 2025 – May 2025",
+    tldr: "A collection of robotic platforms engineered to execute complex control algorithms, from self-balancing robots to computer vision-guided rescue bots and kinematic manipulators.",
+    heroImage: "/usar.jpeg",
+    tags: ["Python", "Raspberry Pi", "PID Control", "OpenCV", "IMUs", "Inverse Kinematics", "Odometry", "3D Printing", "SolidWorks"],
+    constraints: {
+      budget: "Course-provided electronics, microcontrollers, and raw rapid-prototyping materials.",
+      weightSize: "Varied per project; all strictly constrained to function within predefined tabletop environments or obstacle courses.",
+      performance: "Required real-time sensor fusion, sub-inch odometry accuracy, and robust teleoperation/perception in zero-light conditions.",
+      manufacturing: "Rapidly built and iterated using Legos, FDM 3D printing, laser cutting, and modular off-the-shelf actuators/electronics."
+    },
+    conceptGeneration: {
+      ideation: "Analyzed kinematic and dynamic requirements for four distinct robotic challenges, ideating locomotion and manipulation strategies ranging from wheeled drivetrains to spider-inspired linkages.",
+      pivot: "Adapted control strategies based on hardware limitations, pivoting from raw encoder data to implementing complementary filters for sensor fusion to eliminate drift in self-balancing tasks.",
+      imagePlaceholder: "Placeholder: Whiteboard Kinematics / Linkage Sketches"
+    },
+    detailedDesign: {
+      architecture: "Architected full-stack mechatronic systems: derived inverse kinematics (IK) for 2D manipulation, formulated sensor fusion algorithms, and designed high-torque modular drivetrains in SolidWorks.",
+      calculations: "Calculated 9:1 gear reductions for stair-climbing torque and computed configuration space mapping for collision-free robotic arm trajectories.",
+      imagePlaceholder: "Placeholder: CAD Assembly / Configuration Space Map"
+    },
+    prototyping: {
+      manufacturing: "Fabricated custom high-traction wheels, robotic linkages, and servo mounts using 3D printing and laser cutting.",
+      failures: "Initial teleoperation and CV algorithms failed under poor lighting; resolved by engineering a custom onboard illumination system for reliable zero-light navigation.",
+      testing: "Iteratively tuned PID control loops in real-time to eliminate overshoot and ensure rapid disturbance recovery for self-balancing and positioning tasks.",
+      imagePlaceholder: "Placeholder: Testing Videos / Robot Closeups"
+    },
+    outcomes: {
+      specs: "Successfully implemented robust control algorithms achieving high-accuracy positioning, balance under disturbance, and autonomous computer-vision based navigation.",
+      nextSteps: "These projects solidified foundational mechatronics skills, serving as a stepping stone for the more complex perception and control systems currently being developed in the Roborink project.",
+      imagePlaceholder: "Placeholder: Final Assembly Photo"
+    },
+    miniProjects: [
+      {
+        title: "U.S.A.R. Robot (Urban Search & Rescue)",
+        description: "Engineered a teleoperated Search & Rescue robot capable of navigating rough terrain and completing autonomous computer vision tasks in complete darkness. \n\n**Hardware & Design:** Designed a high-torque 9:1 drivetrain capable of climbing stairs and steep ramps. Modeled and 3D-printed custom wheels optimized for varied terrain, featuring rubber treads in the front and slotted rubber-band grips in the rear. Engineered and integrated a custom onboard illumination system to enable reliable visual perception in zero-light environments.\n\n**Software & Perception:** Integrated a Raspberry Pi camera to teleoperate a servo-actuated manipulator arm and camera mount. Developed an OpenCV pipeline that leveraged the custom lighting system to autonomously identify arrow orientations and navigate toward a target, proving the robust integration of the hardware and vision stack.",
+        tags: ["Raspberry Pi", "OpenCV", "3D Printing", "SolidWorks", "Teleoperation"],
+        images: ["/gearbox.jpeg", "/stairs.jpeg"]
+      },
+      {
+        title: "Two-Link Kinematic Manipulator",
+        description: "Developed a 6.5-inch, two-link robotic arm capable of positioning its end effector across a full coordinate grid with <0.25-inch accuracy using odometry feedback.\n\n**Kinematics & Control:** Implemented inverse kinematics (IK) algorithms in Python to solve for joint angles, enabling the system to map its configuration space and compute safe, collision-free paths. Given target coordinates, the software generated and executed smooth, precise trajectories.\n\n**Mechatronics:** Assembled the manipulator with a custom 3:1 gear reduction, carefully mitigating backlash to ensure highly repeatable and predictable motion.",
+        tags: ["Inverse Kinematics", "Python", "Odometry"],
+        images: ["/config_space.jpeg", "/robot_arm.mp4"]
+      },
+      {
+        title: "Inverted Pendulum / Self-Balancing Robot",
+        description: "Architected a two-wheeled self-balancing robot utilizing an IMU for tilt measurement and wheel encoders for position and velocity tracking.\n\n**Sensor Fusion & PID:** Engineered a complementary filter to fuse inertial and encoder data, effectively minimizing sensor drift and overshoot. Tuned a highly responsive, real-time PID control loop to adjust motor speeds, allowing the robot to maintain vertical stability, maneuver precisely, and actively recover from external physical disturbances.",
+        tags: ["PID Control", "IMU", "Sensor Fusion"],
+        images: ["/self_balancing.mp4"]
+      },
+      {
+        title: "Spider-Linkage Locomotion Robot",
+        description: "Challenged standard wheeled paradigms by designing a legged robot that utilized complex mechanical linkages to mimic a spider's walking gait.\n\n**Hardware & Odometry:** Translated continuous rotational motor output into a precise stepping motion. Developed a custom odometry tracking system that successfully measured the robot's movement to within 2 inches of accuracy entirely without the use of wheels, proving a strong understanding of linkage kinematics and alternative position tracking.",
+        tags: ["Linkage Design", "Odometry"],
+        images: ["/spider.jpeg"]
+      }
+    ]
+  },
+  {
     slug: "roborink",
     title: "Roborink (Robotic Air Hockey)",
     role: "Co-Creator / Build18 Hackathon Team, Mechanical Design Lead",
     duration: "1 week (initial hackathon), ongoing",
     tldr: "Designed and built a robotic air hockey system featuring a joystick-controlled linear actuator paddle, which is now being upgraded for fully autonomous gameplay.",
-    heroImage: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg",
+    heroImage: "/roborink.jpg",
     tags: ["Robotics", "Linear Actuators", "Computer Vision", "Hackathon", "ANSYS", "OpenCV", "Python"],
     constraints: {
       budget: "Funded by CMU’s Robotics Club and BUILD18 Hackathon.",
@@ -140,7 +202,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Mechanical Design & Manufacturing, 5-person team",
     duration: "2025 Fall Semester",
     tldr: "Designed and fabricated an ergonomic benchtop vise that eliminates wrist flexion and gripping force by integrating a reversible ratchet and flywheel system.",
-    heroImage: "/vise_hero.jpg",
+    heroImage: "/full vise.jpg",
     tags: ["Mechanical Design", "FEA", "Prototyping", "Ergonomics", "Waterjet", "Laser Cutting", "3D Printing"],
     constraints: {
       budget: "Estimated retail price target of under $100.",
@@ -156,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
     detailedDesign: {
       architecture: "Relies on a central hex shaft driving a flywheel to store rotational energy, alongside a custom reversible ratchet utilizing dual pins and a 3D-printed switcher to control directional locking.",
       calculations: "Conducted FEA on the steel ratchet pin under a 150 N·m load. Hand calculations for axial stress yielded a factor of safety of 1.04, matching the FEA simulated factor of safety of 0.931, well exceeding the 30 N·m standard use case.",
-      imagePlaceholder: "/full_ratchet.jpg"
+      imagePlaceholder: "/full vise.jpg"
     },
     prototyping: {
       manufacturing: "Rapidly prototyped in laser-cut acrylic before fabricating final parts using water-jetted steel pins, a water-jetted aluminum gear and flywheel, a manually turned hex shaft, and a 3D-printed PLA switcher.",
@@ -169,68 +231,6 @@ export const caseStudies: CaseStudy[] = [
       nextSteps: "Future iterations would include a universal adjustable coupler to attach the ratchet subassembly to various vise shafts, and a flywheel braking system.",
       imagePlaceholder: "/vice_vid.mp4"
     }
-  },
-  {
-    slug: "autonomous-robotics",
-    title: "Robotics Projects",
-    role: "Robotics Engineer",
-    duration: "February 2025 – May 2025",
-    tldr: "A collection of robotic platforms engineered to execute complex control algorithms, from self-balancing robots to computer vision-guided rescue bots and kinematic manipulators.",
-    heroImage: "/usar.jpeg",
-    tags: ["Python", "Raspberry Pi", "PID Control", "OpenCV", "IMUs", "Inverse Kinematics", "Odometry", "3D Printing", "SolidWorks"],
-    constraints: {
-      budget: "Course-provided electronics, microcontrollers, and raw rapid-prototyping materials.",
-      weightSize: "Varied per project; all strictly constrained to function within predefined tabletop environments or obstacle courses.",
-      performance: "Required real-time sensor fusion, sub-inch odometry accuracy, and robust teleoperation/perception in zero-light conditions.",
-      manufacturing: "Rapidly built and iterated using Legos, FDM 3D printing, laser cutting, and modular off-the-shelf actuators/electronics."
-    },
-    conceptGeneration: {
-      ideation: "Analyzed kinematic and dynamic requirements for four distinct robotic challenges, ideating locomotion and manipulation strategies ranging from wheeled drivetrains to spider-inspired linkages.",
-      pivot: "Adapted control strategies based on hardware limitations, pivoting from raw encoder data to implementing complementary filters for sensor fusion to eliminate drift in self-balancing tasks.",
-      imagePlaceholder: "Placeholder: Whiteboard Kinematics / Linkage Sketches"
-    },
-    detailedDesign: {
-      architecture: "Architected full-stack mechatronic systems: derived inverse kinematics (IK) for 2D manipulation, formulated sensor fusion algorithms, and designed high-torque modular drivetrains in SolidWorks.",
-      calculations: "Calculated 9:1 gear reductions for stair-climbing torque and computed configuration space mapping for collision-free robotic arm trajectories.",
-      imagePlaceholder: "Placeholder: CAD Assembly / Configuration Space Map"
-    },
-    prototyping: {
-      manufacturing: "Fabricated custom high-traction wheels, robotic linkages, and servo mounts using 3D printing and laser cutting.",
-      failures: "Initial teleoperation and CV algorithms failed under poor lighting; resolved by engineering a custom onboard illumination system for reliable zero-light navigation.",
-      testing: "Iteratively tuned PID control loops in real-time to eliminate overshoot and ensure rapid disturbance recovery for self-balancing and positioning tasks.",
-      imagePlaceholder: "Placeholder: Breadboard Wiring / Prototype Assembly"
-    },
-    outcomes: {
-      specs: "Successfully deployed four functional robotic platforms meeting strict sub-inch accuracy and real-time processing constraints.",
-      nextSteps: "These projects established the foundational knowledge in perception, path-planning, and low-level hardware integration utilized in my current autonomous robotics roles.",
-      imagePlaceholder: "Placeholder: All Four Robots Group Photo"
-    },
-    miniProjects: [
-      {
-        title: "U.S.A.R. Robot (Urban Search & Rescue)",
-        description: "Engineered a teleoperated Search & Rescue robot capable of navigating rough terrain and completing autonomous computer vision tasks in complete darkness. \n\n**Hardware & Design:** Designed a high-torque 9:1 drivetrain capable of climbing stairs and steep ramps. Modeled and 3D-printed custom wheels optimized for varied terrain, featuring rubber treads in the front and slotted rubber-band grips in the rear. Engineered and integrated a custom onboard illumination system to enable reliable visual perception in zero-light environments.\n\n**Software & Perception:** Integrated a Raspberry Pi camera to teleoperate a servo-actuated manipulator arm and camera mount. Developed an OpenCV pipeline that leveraged the custom lighting system to autonomously identify arrow orientations and navigate toward a target, proving the robust integration of the hardware and vision stack.",
-        tags: ["Raspberry Pi", "OpenCV", "3D Printing", "SolidWorks", "Teleoperation", "PID Control"],
-        images: ["/gearbox.jpeg", "/stairs.jpeg"]
-      },
-      {
-        title: "Two-Link Kinematic Manipulator",
-        description: "Developed a 6.5-inch, two-link robotic arm capable of positioning its end effector across a full coordinate grid with <0.25-inch accuracy using odometry feedback.\n\n**Kinematics & Control:** Implemented inverse kinematics (IK) algorithms in Python to solve for joint angles, enabling the system to map its configuration space and compute safe, collision-free paths. Given target coordinates, the software generated and executed smooth, precise trajectories.\n\n**Mechatronics:** Assembled the manipulator with a custom 3:1 gear reduction, carefully mitigating backlash to ensure highly repeatable and predictable motion.",
-        tags: ["Inverse Kinematics", "Python", "Odometry", "PID Control"],
-        images: ["/config_space.jpeg", "/robot_arm.mp4"]
-      },
-      {
-        title: "Inverted Pendulum / Self-Balancing Robot",
-        description: "Architected a two-wheeled self-balancing robot utilizing an IMU for tilt measurement and wheel encoders for position and velocity tracking.\n\n**Sensor Fusion & PID:** Engineered a complementary filter to fuse inertial and encoder data, effectively minimizing sensor drift and overshoot. Tuned a highly responsive, real-time PID control loop to adjust motor speeds, allowing the robot to maintain vertical stability, maneuver precisely, and actively recover from external physical disturbances.",
-        tags: ["PID Control", "IMU", "Sensor Fusion"],
-        images: ["/self_balancing.mp4"]
-      },
-      {
-        title: "Spider-Linkage Locomotion Robot",
-        description: "Challenged standard wheeled paradigms by designing a legged robot that utilized complex mechanical linkages to mimic a spider's walking gait.\n\n**Hardware & Odometry:** Translated continuous rotational motor output into a precise stepping motion. Developed a custom odometry tracking system that successfully measured the robot's movement to within 2 inches of accuracy entirely without the use of wheels, proving a strong understanding of linkage kinematics and alternative position tracking.",
-        tags: ["Linkage Design", "Odometry", "PID Control"],
-        images: ["/spider.jpeg"]
-      }
-    ]
   },
   {
     slug: "computer-vision-pipeline",

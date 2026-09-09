@@ -101,7 +101,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           src={project.heroImage}
           alt={project.title}
           fill
-          className="object-cover opacity-60"
+          className={`opacity-60 ${project.slug === 'ratchet-assisted-vise' ? 'object-contain' : 'object-cover'}`}
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />

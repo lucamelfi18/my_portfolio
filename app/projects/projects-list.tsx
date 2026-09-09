@@ -41,7 +41,7 @@ export function ProjectsList({ projects }: { projects: CaseStudy[] }) {
 									src={project.heroImage || 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg'}
 									alt={project.title}
 									fill
-									className="object-cover rounded-t-lg"
+									className={`rounded-t-lg ${project.slug === 'ratchet-assisted-vise' ? 'object-contain bg-muted/50 p-2' : 'object-cover'}`}
 									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 								/>
 							</div>

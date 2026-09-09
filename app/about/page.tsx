@@ -30,9 +30,8 @@ export default function AboutPage() {
 						</p>
 						<div className="space-y-4">
 							<h2 className="text-2xl font-semibold">My Journey</h2>
-							<p className="text-muted-foreground">
-								My work centers on the intersection of physical design and automated control. 
-								Through hands-on development across autonomous robotics, biomechanical test systems, 
+							<p className="text-muted-foreground"> 
+								Through hands-on development across robotics, biomechanical test systems, 
 								and lab automation hardware, I have engineered custom mechanical assemblies 
 								from initial kinematics and structural simulation to physical fabrication and sensor integration. 
 								Whether optimizing active thermal management enclosures, modeling hyperelastic material responses, 
